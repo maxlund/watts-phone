@@ -51,7 +51,9 @@ enter this line:
 ```
 @reboot sh <path-to-shell-script>/launcher.sh >/home/pi/logs/cronlog 2>&1
 ```
-Download Alan Watts lectures from https://archive.org/details/alanwattscollection and put them in the `resources` directory
+Download Alan Watts lectures as mp3 files to the `resources` directory from:
+
+https://archive.org/details/alanwattscollection
 
 Docs for pygame mixer module:
 

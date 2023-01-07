@@ -18,7 +18,7 @@ ctl.!default {
 }
 ```
 ######  Install dependencies:
-Install python3-vlc:
+Install python-vlc:
 ```
 pip3 install python-vlc
 ``` 
@@ -40,16 +40,16 @@ mkdir logs
 make shell script `launcher.sh` with:
 ```
 #!/bin/sh
-python3 <path-to-python-script>/play-watts.py
+python3 /home/pi/watts-phone//play-watts.py
 ```
 then:
 ```
 chmod 755 launcher.sh
-sudo crontab -e
+crontab -e
 ```
 enter this line:
 ```
-@reboot sh <path-to-shell-script>/launcher.sh >/home/pi/logs/cronlog 2>&1
+@reboot sh /home/pi/watts-phone/launcher.sh > /home/pi/logs/cronlog 2>&1
 ```
 Download Alan Watts lectures as mp3 files to the `resources` directory from:
 

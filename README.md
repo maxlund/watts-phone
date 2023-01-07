@@ -18,13 +18,13 @@ ctl.!default {
 }
 ```
 ######  Install dependencies:
-Install pygame:
+Install python3-vlc:
 ```
-pip3 install pygame
+pip3 install python-vlc
 ``` 
-Pygame will also fail without the required mixer libraries, so you also need to run:
+VLC should be pre-installed on Pi, otherwise 
 ```
-apt-get install libsdl2-mixer-2.0-0
+sudo apt-get install vlc
 ```
 https://www.jeffgeerling.com/blog/2022/playing-sounds-python-on-raspberry-pi
 
@@ -54,9 +54,3 @@ enter this line:
 Download Alan Watts lectures as mp3 files to the `resources` directory from:
 
 https://archive.org/details/alanwattscollection
-
-Docs for pygame mixer module:
-
-https://www.pygame.org/docs/ref/mixer.html
-
-https://www.pygame.org/docs/ref/mixer.html#pygame.mixer.Sound

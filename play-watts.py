@@ -1,20 +1,19 @@
 #! /usr/bin/env python
 
-import pygame
+import vlc
 import os
-
-pygame.mixer.init()
+import time
 
 
 def play_mp3s():
     for f in os.listdir('resources'):
-        i = 0
         if f.endswith('.mp3'):
             print(f'Playing: {f}')
-            sound = pygame.mixer.Sound(f'resources/{f}')
-            playing = sound.play()
-            while playing.get_busy():
-                pygame.time.delay(100)
+            player = vlc.MediaPlayer(f'resources/{f}')
+            player.play()
+            time.sleep(1.5)
+            duration = player.get_length() / 1000.0
+            time.sleep(duration)
 
     play_mp3s()
 

@@ -8,8 +8,8 @@ pygame.mixer.init()
 
 def play_mp3s():
     for f in os.listdir('resources'):
-        print(f'Playing: {f}')
-        if 'mp3' in f:
+        if f.endswith('.mp3'):
+            print(f'Playing: {f}')
             sound = pygame.mixer.Sound(f'resources/{f}')
             playing = sound.play()
             while playing.get_busy():

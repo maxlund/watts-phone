@@ -39,7 +39,7 @@ mkdir logs
 ```
 make shell script `launcher.sh` with:
 ```
-!/bin/sh
+#!/bin/sh
 python3 <path-to-python-script>/play-watts.py
 ```
 then:

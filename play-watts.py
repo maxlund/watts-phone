@@ -1,4 +1,4 @@
-# /usr/bin/env python
+#! /usr/bin/env python
 
 import pygame
 import os
@@ -8,6 +8,7 @@ pygame.mixer.init()
 
 def play_mp3s():
     for f in os.listdir('resources'):
+        i = 0
         if f.endswith('.mp3'):
             print(f'Playing: {f}')
             sound = pygame.mixer.Sound(f'resources/{f}')

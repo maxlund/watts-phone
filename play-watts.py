@@ -7,10 +7,10 @@ import RPi.GPIO as gpio
 
 
 def play_mp3s(pin_number):
-    for f in os.listdir('resources'):
+    for f in os.listdir('/home/pi/watts-phone/resources'):
         if f.endswith('.mp3'):
             print(f'Playing: {f}')
-            player = vlc.MediaPlayer(f'resources/{f}')
+            player = vlc.MediaPlayer(f'/home/pi/watts-phone/resources/{f}')
             player.play()
             time.sleep(1.5)
             while player.is_playing():

@@ -11,10 +11,11 @@ pin_number = 7
 gpio.setmode(gpio.BOARD)
 gpio.setup(pin_number, gpio.IN)
 
-vlc_instance = vlc.Instance('--loop')
+vlc_instance = vlc.Instance()
 medias = [vlc_instance.media_new(f'{resources_path}/{f}') for f in os.listdir(resources_path) if f.endswith('.mp3')]
 list_player = vlc_instance.media_list_player_new()
 list_player.set_media_list(vlc_instance.media_list_new(medias))
+list_player.set_playback_mode(vlc.PlaybackMode.loop)
 media_player = list_player.get_media_player()
 
 list_player.play()
@@ -26,7 +27,4 @@ while True:
     else:
         media_player.audio_set_volume(100)
 
-    if list_player.is_playing():
-        time.sleep(0.2)
-    else:
-        list_player.play()
+    time.sleep(0.3)

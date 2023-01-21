@@ -5,27 +5,28 @@ import os
 import time
 import RPi.GPIO as gpio
 
+resources_path = '/home/admin/watts-phone/resources'
+pin_number = 7
 
-def play_mp3s(pin_number):
-    for f in os.listdir('/home/pi/watts-phone/resources'):
-        if f.endswith('.mp3'):
-            print(f'Playing: {f}')
-            player = vlc.MediaPlayer(f'/home/pi/watts-phone/resources/{f}')
-            player.play()
-            time.sleep(1.5)
-            while player.is_playing():
-                pin_input = gpio.input(pin_number)
-                if pin_input == 1:
-                    player.audio_set_volume(0)
-                else:
-                    player.audio_set_volume(100)
-                time.sleep(0.2)
+gpio.setmode(gpio.BOARD)
+gpio.setup(pin_number, gpio.IN)
 
-    play_mp3s(pin_number)
+vlc_instance = vlc.Instance('--loop')
+medias = [vlc_instance.media_new(f'{resources_path}/{f}') for f in os.listdir(resources_path) if f.endswith('.mp3')]
+list_player = vlc_instance.media_list_player_new()
+list_player.set_media_list(vlc_instance.media_list_new(medias))
+media_player = list_player.get_media_player()
 
+list_player.play()
+while True:
+    pin_input = gpio.input(pin_number)
 
-if __name__ == '__main__':
-    pin_number = 7
-    gpio.setmode(gpio.BOARD)
-    gpio.setup(pin_number, gpio.IN)
-    play_mp3s(pin_number)
+    if pin_input == 1:
+        media_player.audio_set_volume(0)
+    else:
+        media_player.audio_set_volume(100)
+
+    if list_player.is_playing():
+        time.sleep(0.2)
+    else:
+        list_player.play()
